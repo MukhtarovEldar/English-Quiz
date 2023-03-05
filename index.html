@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Timer Test</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style>
+		#timer, #question-form {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<h1>Welcome to the Timer Test</h1>
+	<button id="start-btn">Start</button>
+	<div id="timer">0:00</div>
+
+	<!-- Include the question form -->
+	<form id="question-form" method="post" action="process-form.php">
+		<h2>Questions</h2>
+		<p>Please answer the following questions:</p>
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required>
+		<br>
+    <label for="email">Email:</label>
+		<input type="email" id="email" name="email" required>
+		<br>
+    <label for="q1">1. I have a __________ that I follow every day.</label>
+    <input type="text" id="q1" name="q1" required>
+
+    <label for="q2">2. I go to the gym __________.</label>
+    <input type="text" id="q2" name="q2" required>
+
+    <label for="q3">3. When I study, I often __________ my notes to help me remember the information.</label>
+    <input type="text" id="q3" name="q3" required>
+
+    <label for="q4">4. I try to be __________ and exercise every day.</label>
+    <input type="text" id="q4" name="q4" required>
+
+    <label for="q5">5. Sometimes when I am trying to remember something, I __________ the word __________ in my head.</label>
+    <input type="text" id="q5" name="q5" required>
+
+    <label for="q6">6. To improve your English, it's important to work on your __________.</label>
+    <input type="text" id="q6" name="q6" required>
+
+    <label for="q7">7. When reading a text, it's helpful to __________ important __________.</label>
+    <input type="text" id="q7" name="q7" required>
+
+    <label for="q8">8. If you make a mistake, you can __________ it and start again.</label>
+    <input type="text" id="q8" name="q8" required>
+
+    <label for="q9">9. If you want to change something, you can __________ it.</label>
+    <input type="text" id="q9" name="q9" required>
+
+    <label for="q10">10. I like to keep my room __________, so I make sure to __________ it regularly.</label>
+    <input type="text" id="q10" name="q10" required>
+
+    <label for="q11">11. A __________ marker is more difficult to remove than a __________ marker.</label>
+    <input type="text" id="q11" name="q11" required>
+
+    <label for="q12">12. It's important to be __________ to others.</label>
+    <input type="text" id="q12" name="q12" required>
+
+    <label for="q13">13. The surface of the table is __________.</label>
+    <input type="text" id="q13" name="q13" required>
+
+    <label for="q14">14. The door you use to enter a building is called the __________.</label>
+    <input type="text" id="q14" name="q14" required>
+
+    <label for="q15">15. If something is no longer living, it is __________.</label>
+    <input type="text" id="q15" name="q15" required>
+
+    <label for="q16">16. When someone says "yes" to something, they __________ it.</label>
+    <input type="text" id="q16" name="q16" required>
+
+    <label for="q17">17. Sometimes people __________ with each other when they have different opinions.</label>
+    <input type="text" id="q17" name="q17" required>
+
+    <label for="q18">18. An __________ is a disagreement between people.</label>
+    <input type="text" id="q18" name="q18" required>
+
+    <label for="q19">19. He always (play/plays) soccer on Sundays.</label>
+    <input type="text" id="q19" name="q19" required>
+
+    <label for="q20">20. She is (read/reading) a book at the moment.</label>
+    <input type="text" id="q20" name="q20" required>
+
+    <label for="q21">21. They (will/would) go to the beach next weekend.</label>
+    <input type="text" id="q21" name="q21" required>
+
+    <label for="q22">22. Do you usually(eat/eats) breakfast in the morning?</label>
+    <input type="text" id="q22" name="q22" required>
+
+    <label for="q23">23. I (am going/go) to the store after class today.</label>
+    <input type="text" id="q23" name="q23" required>
+
+    <label for="q24">24. He (has/have) a lot of friends in this city.</label><br>
+    <input type="text" id="q24" name="q24" required>
+
+    <label for="q25">25. She (has been/have been) studying English for three years.</label><br>
+    <input type="text" id="q25" name="q25" required>
+
+		<input type="hidden" id="start-time" name="start-time" value="">
+		<button type="submit">Submit</button>
+	</form>
+
+	<!-- Include JavaScript code here -->
+	<script>
+		// Get the start button, timer, and question form
+		var startBtn = document.getElementById("start-btn");
+		var timer = document.getElementById("timer");
+		var questionForm = document.getElementById("question-form");
+		var startTimeField = document.getElementById("start-time");
+
+		// Add a click event listener to the start button
+		startBtn.addEventListener("click", function() {
+			// Disable the start button
+			startBtn.disabled = true;
+
+			// Show the timer and question form
+			timer.style.display = "block";
+			questionForm.style.display = "block";
+
+			// Start the timer and set the start time field
+			var startTime = Date.now();
+			startTimeField.value = startTime;
+			var interval = setInterval(function() {
+				var elapsedTime = Date.now() - startTime;
+				var minutes = Math.floor(elapsedTime / 60000);
+				var seconds = Math.floor((elapsedTime - minutes * 60000) / 1000);
+				timer.innerHTML = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+			}, 1000);
+		});
+	</script>
+</body>
+</html>
